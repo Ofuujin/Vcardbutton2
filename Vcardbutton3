@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add to Contacts</title>
+</head>
+<body>
+    <button id="addToContactsButton">Add to Contacts</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const addToContactsButton = document.getElementById('addToContactsButton');
+
+            addToContactsButton.addEventListener('click', function () {
+                // Check if it's an iOS device
+                if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+                    // Use the custom URL scheme to open the native contact app on iOS
+                    window.location.href = 'contacts://';
+                }
+                // Check if it's an Android device
+                else if (/Android/i.test(navigator.userAgent)) {
+                    // Use the custom URL scheme to open the native contact app on Android
+                    window.location.href = 'content://contacts/people/';
+                } else {
+                    // Display a message for other devices
+                    alert('This feature is not supported on your device.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
